@@ -29,3 +29,31 @@ This paper proposes an innovative approach: leveraging Natural Language Processi
 4. Sentiment Analysis
 5. Network Analysis
 
+## Data Collection
+I first go to the following [website](https://www.ipbes.net/assessment-reports/asia-pacific) to download PDF files under the Comment second review section. I then use the pdfplumber package in Python to convert PDF files to XLSX files for further analysis.
+
+## Sentiment Analysis with BERT
+For tokenizing the comments, I used an auto tokenizer from the pre-trained model **“nlptown/bert-base-multilingual-uncased-sentiment”**.  The bert-base-multilingual-uncased model is finetuned for sentiment analysis on product reviews in six languages: English, Dutch, German, French, Spanish, and Italian. It predicts the sentiment of the experts comment between 1 and 5, 1 represents the most negative and 5 represents the most positive. See [here](https://huggingface.co/nlptown/bert-base-multilingual-uncased-sentiment).
+
+## Visualize the Frequency of Keyphrases and their Importance on Sentiments using WordCloud: 
+I first preprocess the comments by removing URLs and punctuation. This ensures that the text data is cleaner and more suitable for further analysis.
+
+I use **keyphrase-vectorizers package** in Python to extract key phrases from every comment. Instead of using n-gram tokens of a pre-defined range, this method extracts keyphrases from text documents using part-of-speech tags to compute document-keyphrase matrices.See [here](https://pypi.org/project/keyphrase-vectorizers/). 
+
+To show the importance of each keyphrase on the sentiment score, I use a linear regression for each keyphrase against the sentiment scores. For each keyphrase, I run a simple linear regression model where:  
+The independent variable is the presence (or absence) of the keyphrase (binary: 1 or 0).  
+The dependent variable is the sentiment score.  
+The Ordinary Least Squares (OLS) method is used to fit the linear regression model.  
+
+For each keyphrase, after fitting the linear regression model, I extract the coefficient of the keyphrase (coef), which indicates the change in the sentiment score for a one-unit change in the keyphrase (i.e., its presence vs. absence). And the p-value (p_value), which tests the hypothesis that the keyphrase has no effect on the sentiment score. A small p-value (typically ≤ 0.05) indicates that the keyphrase is statistically significant in predicting the sentiment score. Keyphrases wirth p-values larger than 0.05 are removed. I extract the 100 keyphrases with the largest magnitude of negative and positive coefficients respectfully.  
+
+**To interpret the coefficient:** 
+A negative coefficient suggests that the presence of the keyphrase is associated with a decrease in sentiment score, implying a negative sentiment.  
+A positive coefficient suggests that the presence of the keyphrase is associated with an increase in sentiment score, implying a positive sentiment.  
+The magnitude (absolute value) of the coefficient indicates the strength or intensity of this association. The larger the absolute value, the stronger the relationship between the word and the sentiment score. 
+
+I then use the extracted 200 keyphrases as keys to count the frequency each keyphrase appears in all comments.   
+
+To visualize the frequency of keyphrases and their importance on sentiment scores, I use the Python package **wordcloud**. In this word cloud, two aspects are considered: **the size and the color**. The size of keyphrase represents its coefficient – the larger the keyphrase is, the higher the influence of that phrase on the sentiment. The color of keyphrase represents its frequency, with a darker color indicating a higher frequency.
+
+
