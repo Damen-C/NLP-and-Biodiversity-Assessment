@@ -4,7 +4,7 @@ In this project, I intend to leverage advanced **NLP techniques** to analyze the
 
 ## Visualization 
 **Figure 1:** A Semantic Network of Keyphrases Extracted  
-![](https://github.com/Damen-C/NLP-and-Biodiversity-Assessment/blob/main/network.png?raw=true)
+![](https://github.com/Damen-C/NLP-and-Biodiversity-Assessment/blob/main/Network.png?raw=true)
 
 **Figure 2:** Phrases Associated with Positive Sentiments  
 ![](https://github.com/Damen-C/NLP-and-Biodiversity-Assessment/blob/main/Positive_words.png?raw=true)
