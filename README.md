@@ -9,11 +9,11 @@ Figure 1: A Semantic Network of Keyphrases Extracted
 
 Figure 2: Phrases Associated with Positive Sentiments  
 (A larger keyphrase indicates a stronger influence; A darker color indicates a higher frequency)
-![](https://github.com/Damen-C/NLP-and-Biodiversity-Assessment/blob/main/PosPhrases(Top50)_colormap_preprocessed.png?raw=true)
+![](https://github.com/Damen-C/NLP-and-Biodiversity-Assessment/blob/main/Picture1.png?raw=true)
 
 Figure 3: Phrases Associated with Negative Sentiments  
 (A larger keyphrase indicates a stronger influence; A darker color indicates a higher frequency)
-![](https://github.com/Damen-C/NLP-and-Biodiversity-Assessment/blob/main/NegPhrases(Top50)_colormap_preprocessed.png?raw=true)
+![](https://github.com/Damen-C/NLP-and-Biodiversity-Assessment/blob/main/Picture2.png?raw=true)
 
 ## Summary of Project 
 The Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Service (IPBES), an intergovernmental body founded in 2012, has taken significant role in examining biodiversity trends and nature's contributions at regional and global scales. Notably, in 2015, IPBES initiated four regional assessments including Africa, the Americas, Asia Pacific, and Europe and Central Asia. These endeavors aim to strengthen the link between science and policymaking at the regional level.
