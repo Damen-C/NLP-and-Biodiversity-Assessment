@@ -3,16 +3,13 @@
 In this project, I intend to leverage advanced **NLP techniques** to analyze the insights provided by experts in response to regional assessments carried out by **The Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Service (IPBES)**. The goal of this project is to explore the contributions that NLP can offer to the realm of biodiversity and ecosystem evaluation.
 
 ## Visualization 
-Figure 1: A Semantic Network of Keyphrases Extracted  
-(A larger node indicates a higher contextual similarity of that phrase to the whole feedback; A thicker and darker edge indicates a higher contextual similarity of the two connected phrases)
+**Figure 1:** A Semantic Network of Keyphrases Extracted  
 ![](https://github.com/Damen-C/NLP-and-Biodiversity-Assessment/blob/main/network.png?raw=true)
 
-Figure 2: Phrases Associated with Positive Sentiments  
-(A larger keyphrase indicates a stronger influence; A darker color indicates a higher frequency)
+**Figure 2:** Phrases Associated with Positive Sentiments  
 ![](https://github.com/Damen-C/NLP-and-Biodiversity-Assessment/blob/main/Picture1.png?raw=true)
 
-Figure 3: Phrases Associated with Negative Sentiments  
-(A larger keyphrase indicates a stronger influence; A darker color indicates a higher frequency)
+**Figure 3:** Phrases Associated with Negative Sentiments  
 ![](https://github.com/Damen-C/NLP-and-Biodiversity-Assessment/blob/main/Picture2.png?raw=true)
 
 ## Summary of Project 
