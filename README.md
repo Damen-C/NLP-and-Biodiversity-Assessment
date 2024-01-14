@@ -53,4 +53,17 @@ I then use the extracted 200 keyphrases as keys to count the frequency each keyp
 
 To visualize the frequency of keyphrases and their importance on sentiment scores, I use the Python package **wordcloud**. In this word cloud, two aspects are considered: **the size and the color**. The size of keyphrase represents its coefficient – the larger the keyphrase is, the higher the influence of that phrase on the sentiment. The color of keyphrase represents its frequency, with a darker color indicating a higher frequency.
 
+## Network Analysis:
+I use keyphrase-vectorizers library in Python to extract key phrases from the comments. 
+The extracted candidate key phrases are subsequently passed to KeyBERT for embedding generation and similarity calculation. See [here](https://github.com/TimSchopf/KeyphraseVectorizers). 
+What this KeyBERT does is that it creates keywords and keyphrases that are most similar to a corpus. 
 
+To construct a semantic network from the key phrases extracted from the IPBES expert comments, I leveraged BERT embeddings to capture semantic relationships between these key phrases. 
+
+I first utilized KeyBERT to extract the top 50 salient key phrases from the aggregated comments text. This provided an initial set of important topics. 
+
+Then, to obtain more meaningful embeddings, I extracted a contextual window of text around each key phrase occurrence and computed embeddings on this contextual snippet. Specifically, for each key phrase match, I identified the start index of the match in the overall text. I then defined a contextual window spanning n words before and after the key phrase. For example, with a window size n=20, and a key phrase starting at index 100 in the text, I would extract indices 80 to 120 as the contextual window. This extracts some words before and after the key phrase to incorporate the local context.
+
+The appropriate window size is an empirically tuned hyperparameter. A smaller window may not capture enough context, while a larger window starts to include less relevant text. I experimented with window sizes between 10-30 and found 20 to be a reasonable size for our text data based on manual examination. The contextual window text snippet is then fed into the pretrained BERT model to obtain a high dimensional embedding vector. This embedding encodes the semantic meaning of the keyphrase in its local context. The contextual embeddings allow each keyphrase occurrence to have a unique vector based on how it is used, rather than a single embedding for each keyphrase type. This provides greater resolution in quantifying semantic similarities between keyphrase usages.
+
+I then computed a cosine similarity matrix between all contextual keyphrase embeddings to quantify semantic similarity. Highly similar keyphrase pairs were connected in a weighted networkx graph, with an empirically chosen threshold of 0.7. Node weights were assigned based on keyphrase importance scores from KeyBERT. Edge weights were defined as the cosine similarity between connected nodes. Finally, the graph was exported into two CSV files representing nodes and edges. This facilitates analysis and visualization using Gephi.
